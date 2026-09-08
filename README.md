@@ -44,27 +44,86 @@ flowchart LR
 
 ---
 
-## 🛠️ Installation & Setup
+## ⚡ Quick Start (1-Click Run on Any Laptop)
 
-### Prerequisites
-- Python 3.10+
-- Node.js 18+ and npm
+### Prerequisites:
+Make sure the following are installed on your laptop:
+- **Python 3.10+** (Ensure **"Add Python to PATH"** is checked during installation)
+- **Node.js 18+** & **npm** (Download LTS from [nodejs.org](https://nodejs.org/))
 
-### 1. Backend Setup
-```bash
-cd Backend
-python -m pip install -r requirements.txt
-python main.py
+---
+
+### Option A: Windows (1-Click Launch)
+Simply double-click:
 ```
-*Backend API will run at `http://127.0.0.1:8000` (API Docs at `http://127.0.0.1:8000/docs`).*
+start_project.bat
+```
+> 💡 *Note: The batch script will automatically check and install all missing Python & Frontend npm dependencies on first run, launch both servers, and open your browser automatically at `http://localhost:5173`.*
 
-### 2. Frontend Setup
+Or install all dependencies manually anytime:
+```
+install_dependencies.bat
+```
+
+---
+
+### Option B: macOS / Linux (1-Click Launch)
+Give execute permission and run:
 ```bash
+chmod +x start_project.sh install_dependencies.sh
+./start_project.sh
+```
+
+---
+
+### Option C: Manual Setup (Step-by-Step)
+
+#### 1. Install All Dependencies:
+```bash
+# Python dependencies
+pip install -r requirements.txt
+
+# Frontend dependencies
 cd Frontend
 npm install
-npm.cmd run dev
+cd ..
 ```
-*Frontend UI will run at `http://localhost:5173`.*
 
-### 3. One-Click Launch (Windows)
-Double-click `start_project.bat` in the root folder to start both Backend and Frontend automatically.
+#### 2. Start Backend (Terminal 1):
+```bash
+cd Backend
+python main.py
+```
+*Backend API runs at `http://127.0.0.1:8000` (Swagger Docs at `http://127.0.0.1:8000/docs`).*
+
+#### 3. Start Frontend (Terminal 2):
+```bash
+cd Frontend
+npm run dev
+```
+*Frontend runs at `http://localhost:5173`.*
+
+---
+
+## 📦 Project Structure
+
+```
+├── requirements.txt            # Root Python dependencies
+├── install_dependencies.bat    # Windows 1-click dependency installer
+├── install_dependencies.sh     # Mac/Linux 1-click dependency installer
+├── start_project.bat           # Windows 1-click system launcher (auto-installs deps)
+├── start_project.sh            # Mac/Linux 1-click system launcher (auto-installs deps)
+├── Backend/
+│   ├── main.py                 # FastAPI application & REST endpoints
+│   ├── requirements.txt        # Backend dependencies
+│   ├── blockchain_ledger.json  # Local EVM ledger storage
+│   └── services/
+│       ├── face_service.py     # Biometric detection & SHA-256 generation
+│       ├── search_service.py   # Multi-platform social & web scraping
+│       ├── blockchain_service.py # EVM smart contract & ledger logic
+│       └── pipeline_service.py # Orchestrator for all pipeline stages
+└── Frontend/
+    ├── package.json            # React & Tailwind dependencies
+    ├── vite.config.js          # Vite config & API reverse proxy
+    └── src/                    # UI Components & Pipeline flow
+```
